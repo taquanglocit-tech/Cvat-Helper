@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>PointDetect 3D</title>
+  <style>
+    :root {
+      --bg: #141414;
+      --card-bg: #1f1f1f;
+      --border: #303030;
+      --text: #e5e5e5;
+      --subtext: #8c8c8c;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      background: #064e3b;
+      color: #34d399;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .domain-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+    .domain-label {
+      font-size: 11px;
+      color: var(--subtext);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .domain-text {
+      font-weight: 600;
+      font-size: 12px;
+      word-break: break-all;
+      color: #fff;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+    .status-badge.active { color: #34d399; }
+    .status-badge.inactive { color: #9ca3af; }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .btn {
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { background: #2a2a2a; border-color: #404040; }
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+    .btn-danger {
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: var(--danger);
+    }
+    .btn-secondary {
+      margin-top: 8px;
+      background: #191919;
+      font-size: 12px;
+    }
+    .tip-box {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--subtext);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .tip-box kbd {
+      background: #262626;
+      border: 1px solid #404040;
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-family: inherit;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">PointDetect 3D <span class="tag">Detect</span></div>
+  </div>
+
+  <div class="domain-box">
+    <div class="domain-label">Trang CVAT hiện tại</div>
+    <div class="domain-text" id="originText">Đang kiểm tra...</div>
+    <div class="status-badge" id="statusBadge">
+      <span class="status-dot"></span>
+      <span id="statusText">Chưa kích hoạt</span>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="toggleBtn">Kích hoạt trên trang này</button>
+  <button class="btn btn-secondary" id="injectBtn" style="display: none;">Nạp ngay vào tab (không cần F5)</button>
+
+  <div class="tip-box">
+    <div>⚡ Phím tắt mở/thu gọn thanh công cụ: <kbd>Alt + D</kbd></div>
+    <div>🎯 Đảo đầu xe: <kbd>F</kbd> | Hút mặt đất: <kbd>G</kbd></div>
+    <div>🔍 Duyệt kiểm tra vật thể: <kbd>Tab</kbd> / <kbd>Shift + Tab</kbd></div>
+  </div>
+
+  <script src="register.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

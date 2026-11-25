@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "PointDetect 3D - CVAT LiDAR Detection Assistant",
+  "version": "1.0.0",
+  "description": "Công cụ trợ lý gán nhãn 3D LiDAR Bounding Box chuyên dụng cho bài toán Detection trên CVAT - Tăng độ tương phản, lọc mặt đất, Preset chuẩn ADAS",
+  "author": "PointDetect Team",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "PointDetect 3D (Bấm để bật trên CVAT)",
+    "default_popup": "popup.html"
+  }
+}
